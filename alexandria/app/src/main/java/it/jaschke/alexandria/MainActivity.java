@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import it.jaschke.alexandria.api.Callback;
 
 
@@ -57,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         // Set up the drawer.
         navigationDrawerFragment.setUp(R.id.navigation_drawer,
-                    (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -176,6 +179,19 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             finish();
         }
         super.onBackPressed();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(null != scanResult){
+            Toast.makeText(this, scanResult.getContents(), Toast.LENGTH_LONG).show();
+            final String ean = scanResult.getContents();
+            AddBook fragment = (AddBook) getSupportFragmentManager().findFragmentById(R.id.container);
+            if(null != fragment){
+                fragment.fetchBook(ean);
+            }
+        }
     }
 
 
