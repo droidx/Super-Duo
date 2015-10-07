@@ -168,6 +168,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
+
+        // Check if authors are not empty - else throws null pointer exception
         if (TextUtils.isEmpty(authors)) {
             String[] authorsArr = authors.split(",");
             ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
