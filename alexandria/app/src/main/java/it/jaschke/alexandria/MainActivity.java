@@ -185,7 +185,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(null != scanResult){
-            Toast.makeText(this, scanResult.getContents(), Toast.LENGTH_LONG).show();
             final String ean = scanResult.getContents();
             AddBook fragment = (AddBook) getSupportFragmentManager().findFragmentById(R.id.container);
             if(null != fragment){
