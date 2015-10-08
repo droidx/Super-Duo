@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -75,7 +74,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                     ean = "978" + ean;
                 }
                 if (ean.length() < 13) {
-                    Toast.makeText(getActivity(), R.string.invalid_ean, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getActivity(), R.string.invalid_ean, Toast.LENGTH_LONG).show();
                     clearFields();
                     return;
                 }
@@ -170,7 +169,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
 
         // Check if authors are not empty - else throws null pointer exception
-        if (TextUtils.isEmpty(authors)) {
+        if (!TextUtils.isEmpty(authors)) {
             String[] authorsArr = authors.split(",");
             ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
             ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",", "\n"));
