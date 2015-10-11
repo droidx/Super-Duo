@@ -20,10 +20,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         Log.d(LOG_TAG, "Reached MainActivity onCreate");
 
-        if(getIntent() != null && getIntent().getAction().equals(ScoresWidgetProvider.ITEM_SELECTED_ACTION)){
+        /*if(getIntent() != null && getIntent().getAction().equals(ScoresWidgetProvider.ITEM_SELECTED_ACTION)){
             // Incase of detail view for each match, process it here
             // Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
         if (savedInstanceState == null) {
             my_main = new PagerFragment();
