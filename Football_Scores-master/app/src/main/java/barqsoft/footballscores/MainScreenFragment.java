@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import barqsoft.footballscores.service.MyFetchService;
 
@@ -44,10 +45,12 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         update_scores();
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
+        final View emptyView = (TextView) rootView.findViewById(R.id.listview_empty);
         mAdapter = new scoresAdapter(getActivity(),null,0);
         score_list.setAdapter(mAdapter);
-        getLoaderManager().initLoader(SCORES_LOADER,null,this);
+        getLoaderManager().initLoader(SCORES_LOADER, null, this);
         mAdapter.detail_match_id = MainActivity.selected_match_id;
+        score_list.setEmptyView(emptyView);
         score_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -60,6 +63,22 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
             }
         });
         return rootView;
+    }
+
+    // Added empty view incase listview/database is empty or no internet connection
+    // Helpful resource : Advanced Android App Development Course - Integration Points and Error case
+    private void updateEmptyView() {
+        if ( mAdapter.getCount() == 0 ) {
+            TextView tv = (TextView) getView().findViewById(R.id.listview_empty);
+            if ( null != tv ) {
+                // if cursor is empty, why? do we have an invalid location
+                int message = R.string.empty_scores_list;
+                if (!Utilies.isNetworkAvailable(getActivity()) ) {
+                    message = R.string.empty_scores_list_no_network;
+                }
+                tv.setText(message);
+            }
+        }
     }
 
     @Override
@@ -92,6 +111,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         //Log.v(FetchScoreTask.LOG_TAG,"Loader query: " + String.valueOf(i));
         mAdapter.swapCursor(cursor);
         //mAdapter.notifyDataSetChanged();
+        updateEmptyView();
     }
 
     @Override
@@ -99,6 +119,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     {
         mAdapter.swapCursor(null);
     }
+
 
 
 }

@@ -39,4 +39,9 @@
     <string name="format_match_played">This match was played between home team <xliff:g id="homeName">%1$s</xliff:g> and away team <xliff:g id="awayName">%2$s</xliff:g> at <xliff:g id="date">%3$s</xliff:g> . <xliff:g id="homeName">%4$s</xliff:g> scored <xliff:g id="homeGoals">%5$s</xliff:g> goals while <xliff:g id="awayName">%6$s</xliff:g> scored <xliff:g id="awayGoals">%7$s</xliff:g> goals.</string>
     <string name="format_share_match">Share match played between <xliff:g id="homeName">%1$s</xliff:g> and  <xliff:g id="awayName">%2$s</xliff:g> </string>
     <string name="unknown_league_text">Not known League Please report</string>
+
+    <!-- Empty Scores Database -->
+    <string name="empty_scores_list">No scores available for this day</string>
+    <string name="empty_scores_list_no_network">No matches information available. The network is not available to fetch match fixtures data.</string>
+
 </resources>
