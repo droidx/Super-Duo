@@ -67,14 +67,9 @@ public class scoresAdapter extends CursorAdapter {
         ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
 
         if (homeGoals == -1) {
-            mHolder.detail_layout.setContentDescription("This match will be played between home team " + homeName
-                    + " and away team " + awayName + " at "
-                    + date);
-        } else {
-            mHolder.detail_layout.setContentDescription("This match was played between home team " + homeName
-                    + " and away team " + awayName + " at "
-                    + date + ". " + homeName + " scored " + homeGoals + " goals while " + awayName + " scored "
-                    + awayGoals + ".");
+            mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_play, homeName, awayName , date));
+        } else{
+            mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_played, homeName, awayName, date, homeName, homeGoals, awayName, awayGoals));
         }
         if (mHolder.match_id == detail_match_id) {
             //Log.v(FetchScoreTask.LOG_TAG,"will insert extraView");
@@ -85,7 +80,7 @@ public class scoresAdapter extends CursorAdapter {
             match_day.setText(Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
             TextView league = (TextView) v.findViewById(R.id.league_textview);
-            league.setText(Utilies.getLeague(cursor.getInt(COL_LEAGUE)));
+            league.setText(Utilies.getLeague(context, cursor.getInt(COL_LEAGUE)));
             Button share_button = (Button) v.findViewById(R.id.share_button);
             share_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,7 +90,7 @@ public class scoresAdapter extends CursorAdapter {
                             + mHolder.score.getText() + " " + mHolder.away_name.getText() + " "));
                 }
             });
-            share_button.setContentDescription("Share match played between " + homeName + " and " + awayName);
+            share_button.setContentDescription(context.getString(R.string.format_share_match, homeName, awayName));
         } else {
             container.removeAllViews();
         }

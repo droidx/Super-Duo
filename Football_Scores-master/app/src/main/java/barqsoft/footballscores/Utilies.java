@@ -32,7 +32,7 @@ public class Utilies {
     public static final int PRIMERA_DIVISION = 358;
     public static final int BUNDESLIGA = 351;
 
-    public static String getLeague(int league_num) {
+    public static String getLeague(Context context, int league_num) {
         switch (league_num) {
             case SERIE_A:
                 return "Seria A";
@@ -45,7 +45,7 @@ public class Utilies {
             case BUNDESLIGA:
                 return "Bundesliga";
             default:
-                return "Not known League Please report";
+                return context.getString(R.string.unknown_league_text);
         }
     }
 
