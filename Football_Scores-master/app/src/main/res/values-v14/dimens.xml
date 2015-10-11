@@ -1,3 +1,4 @@
 <resources>
+    <!-- placing 0 dp for api level 14 and above doesn't seem to work? -->
     <dimen name="widget_margin">8dp</dimen>
 </resources>
