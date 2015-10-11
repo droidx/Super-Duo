@@ -15,11 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue01"
-            android:text="Today's Matches"
-            android:textColor="@android:color/white"
             android:padding="@dimen/widget_margin"
-            android:textSize="16sp">
-        </TextView>
+            android:text="@string/matches_today"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"></TextView>
 
         <ListView
             android:id="@+id/widget_match_list"
@@ -29,7 +28,8 @@
             android:dividerHeight="12dp"
             android:gravity="center"
             android:loopViews="true"
-            android:padding="@dimen/widget_margin" />
+            android:paddingLeft="@dimen/widget_margin"
+            android:paddingRight="@dimen/widget_margin" />
     </LinearLayout>
 
 
@@ -37,9 +37,9 @@
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:padding="@dimen/widget_margin"
         android:text="@string/empty_listview_text"
         android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        android:padding="@dimen/widget_margin"
-        android:gravity="center_vertical"/>
+        android:textSize="16sp" />
 </FrameLayout>
