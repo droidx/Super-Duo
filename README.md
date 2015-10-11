@@ -8,6 +8,7 @@ Alexandria App:
 Football Scores App:
 1. Added widget using Listview/Collections - Use of RemoteViewsFactory and RemoteViewsService.
 Resource : http://developer.android.com/guide/topics/appwidgets/index.html
+https://code.google.com/p/wiktionary-android/source/browse/trunk/Wiktionary/src/com/example/android/wiktionary/WordWidget.java
 2. Accessiblity support
 3. RTL support 
 Resource : http://android-developers.blogspot.in/2013/03/native-rtl-support-in-android-42.html
