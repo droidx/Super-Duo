@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,7 +51,6 @@ public class ListWidgetService extends RemoteViewsService {
             SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
             final Uri queryUri = DatabaseContract.scores_table.buildScoreWithDate();
             cursor = getContentResolver().query(queryUri, null, null, new String[]{mformat.format(today)}, null);
-            DatabaseUtils.dumpCursor(cursor);
         }
 
         @Override
