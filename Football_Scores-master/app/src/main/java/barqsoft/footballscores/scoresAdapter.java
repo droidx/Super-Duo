@@ -66,11 +66,15 @@ public class ScoresAdapter extends CursorAdapter {
         View v = vi.inflate(R.layout.detail_fragment, null);
         ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
 
+        // Accessibility
+        mHolder.home_name.setContentDescription(context.getString(R.string.format_team_name, homeName));
+        mHolder.away_name.setContentDescription(context.getString(R.string.format_team_name, awayName));
         if (homeGoals == -1) {
-            mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_play, homeName, awayName , date));
-        } else{
+            mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_play, homeName, awayName, date));
+        } else {
             mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_played, homeName, awayName, date, homeName, homeGoals, awayName, awayGoals));
         }
+        
         if (mHolder.match_id == detail_match_id) {
             //Log.v(FetchScoreTask.LOG_TAG,"will insert extraView");
 
