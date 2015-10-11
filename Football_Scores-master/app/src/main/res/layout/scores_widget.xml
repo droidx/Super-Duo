@@ -4,24 +4,42 @@
     android:id="@+id/widget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:padding="@dimen/widget_margin">
+    android:background="@android:color/white">
 
-    <ListView
-        android:id="@+id/widget_match_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:loopViews="true" />
+        android:orientation="vertical">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue01"
+            android:text="Today's Matches"
+            android:textColor="@android:color/white"
+            android:padding="@dimen/widget_margin"
+            android:textSize="16sp">
+        </TextView>
+
+        <ListView
+            android:id="@+id/widget_match_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="12dp"
+            android:gravity="center"
+            android:loopViews="true"
+            android:padding="@dimen/widget_margin" />
+    </LinearLayout>
+
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:gravity="center"
-        android:text="No matches today"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:text="@string/empty_listview_text"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:padding="@dimen/widget_margin"
+        android:gravity="center_vertical"/>
 </FrameLayout>
