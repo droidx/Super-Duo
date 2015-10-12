@@ -117,6 +117,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     public void fetchBook(String eanStr) {
         //Once we have an ISBN, start a book intent
         EAN_NO = eanStr;
+
+        if (!Utility.isConnected(getActivity())){
+            Utility.sendMessageBroadcast(getActivity(), getString(R.string.not_connected));
+            return;
+        }
+
         Intent bookIntent = new Intent(getActivity(), BookService.class);
         bookIntent.putExtra(BookService.EAN, eanStr);
         bookIntent.setAction(BookService.FETCH_BOOK);

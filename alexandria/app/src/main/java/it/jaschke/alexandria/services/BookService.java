@@ -2,13 +2,9 @@ package it.jaschke.alexandria.services;
 
 import android.app.IntentService;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -22,8 +18,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import it.jaschke.alexandria.MainActivity;
 import it.jaschke.alexandria.R;
+import it.jaschke.alexandria.Utility;
 import it.jaschke.alexandria.data.AlexandriaContract;
 
 
@@ -94,10 +90,6 @@ public class BookService extends IntentService {
 
         bookEntry.close();
 
-        if (!isConnected()){
-            sendMessageBroadcast(getString(R.string.not_connected));
-            return;
-        }
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -170,7 +162,7 @@ public class BookService extends IntentService {
             if (bookJson.has(ITEMS)) {
                 bookArray = bookJson.getJSONArray(ITEMS);
             } else {
-                sendMessageBroadcast(getResources().getString(R.string.not_found));
+                Utility.sendMessageBroadcast(getApplicationContext(), getResources().getString(R.string.not_found));
                 return;
             }
 
@@ -207,21 +199,6 @@ public class BookService extends IntentService {
         } catch (NullPointerException e) {
             Log.e(LOG_TAG, "Error ", e);
         }
-    }
-
-    private void sendMessageBroadcast(String message) {
-        Intent messageIntent = new Intent(MainActivity.MESSAGE_EVENT);
-        messageIntent.putExtra(MainActivity.MESSAGE_KEY, message);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(messageIntent);
-    }
-
-    private boolean isConnected() {
-        ConnectivityManager cm =
-                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
     }
 
     private void writeBackBook(String ean, String title, String subtitle, String desc, String imgUrl) {
