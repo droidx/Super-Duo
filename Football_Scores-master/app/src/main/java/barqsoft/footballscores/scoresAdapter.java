@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by yehya khaled on 2/26/2015.
  */
-public class ScoresAdapter extends CursorAdapter {
+public class scoresAdapter extends CursorAdapter {
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
     public static final int COL_HOME_GOALS = 6;
@@ -26,7 +26,7 @@ public class ScoresAdapter extends CursorAdapter {
     public double detail_match_id = 0;
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
 
-    public ScoresAdapter(Context context, Cursor cursor, int flags) {
+    public scoresAdapter(Context context, Cursor cursor, int flags) {
         super(context, cursor, flags);
     }
 
@@ -74,7 +74,7 @@ public class ScoresAdapter extends CursorAdapter {
         } else {
             mHolder.detail_layout.setContentDescription(context.getString(R.string.format_match_played, homeName, awayName, date, homeName, homeGoals, awayName, awayGoals));
         }
-        
+
         if (mHolder.match_id == detail_match_id) {
             //Log.v(FetchScoreTask.LOG_TAG,"will insert extraView");
 

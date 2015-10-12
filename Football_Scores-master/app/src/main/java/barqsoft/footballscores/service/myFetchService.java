@@ -9,12 +9,12 @@ import barqsoft.footballscores.Utilies;
 /**
  * Created by yehya khaled on 3/2/2015.
  */
-public class MyFetchService extends IntentService
+public class myFetchService extends IntentService
 {
-    public static final String LOG_TAG = "MyFetchService";
-    public MyFetchService()
+    public static final String LOG_TAG = "myFetchService";
+    public myFetchService()
     {
-        super("MyFetchService");
+        super("myFetchService");
     }
 
     @Override

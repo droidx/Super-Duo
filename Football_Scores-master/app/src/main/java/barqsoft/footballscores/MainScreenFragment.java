@@ -14,14 +14,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import barqsoft.footballscores.service.MyFetchService;
+import barqsoft.footballscores.service.myFetchService;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainScreenFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
-    public ScoresAdapter mAdapter;
+    public scoresAdapter mAdapter;
     public static final int SCORES_LOADER = 0;
     private String[] fragmentdate = new String[1];
     private int last_selected_item = -1;
@@ -32,7 +32,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
 
     private void update_scores()
     {
-        Intent service_start = new Intent(getActivity(), MyFetchService.class);
+        Intent service_start = new Intent(getActivity(), myFetchService.class);
         getActivity().startService(service_start);
     }
     public void setFragmentDate(String date)
@@ -46,7 +46,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
         final View emptyView = (TextView) rootView.findViewById(R.id.listview_empty);
-        mAdapter = new ScoresAdapter(getActivity(),null,0);
+        mAdapter = new scoresAdapter(getActivity(),null,0);
         score_list.setAdapter(mAdapter);
         getLoaderManager().initLoader(SCORES_LOADER, null, this);
         mAdapter.detail_match_id = MainActivity.selected_match_id;
