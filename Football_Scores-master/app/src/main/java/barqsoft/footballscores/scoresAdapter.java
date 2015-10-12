@@ -69,7 +69,7 @@ public class ScoresAdapter extends CursorAdapter {
         View v = vi.inflate(R.layout.detail_fragment, null);
         ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
 
-        // Accessibility
+        // Accessibility - adding content descriptions
         mHolder.home_name.setContentDescription(context.getString(R.string.format_team_name, homeName));
         mHolder.away_name.setContentDescription(context.getString(R.string.format_team_name, awayName));
         mHolder.home_crest.setContentDescription(context.getString(R.string.format_team_image, homeName));
@@ -99,6 +99,8 @@ public class ScoresAdapter extends CursorAdapter {
                             + mHolder.score.getText() + " " + mHolder.away_name.getText() + " "));
                 }
             });
+
+            // Accessibility - adding content description to the share button
             share_button.setContentDescription(context.getString(R.string.format_share_match, homeName, awayName));
         } else {
             container.removeAllViews();
